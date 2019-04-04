@@ -1,0 +1,28 @@
+{
+  "name": "steem-engine-api",
+  "description": "API server for Steem Engine",
+  "version": "0.1.0",
+  "author": "Dwayne Charrington <dwaynecharrington@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://steem-engine.com",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/MattyIce/steem-engine/issues"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "graphql": "^14.2.1",
+    "graphql-yoga": "^1.17.4",
+    "merge-graphql-schemas": "^1.5.8",
+    "sscjs": "^0.0.7",
+    "steem": "^0.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^11.13.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  }
+}

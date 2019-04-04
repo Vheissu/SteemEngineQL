@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "lib": [
+        "dom",
+        "es2017",
+        "esnext"
+      ],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "outDir": "./dist",
+      "sourceMap": true,
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": false,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+    }
+  }

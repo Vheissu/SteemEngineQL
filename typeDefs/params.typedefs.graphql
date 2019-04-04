@@ -1,0 +1,10 @@
+type SSCStoreParams {
+    priceSBD: String!
+    priceSteem: String!
+    quantity: String!
+    disabled: Boolean!
+}
+
+type Query {
+    sscstore: [SSCStoreParams!]!
+}

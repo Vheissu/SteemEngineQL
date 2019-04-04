@@ -1,0 +1,10 @@
+type Balance {
+    account: String!
+    symbol: String!
+    balance: String!
+}
+
+type Query {
+    balances(account: String!, limit: Int, offset: Int): [Balance!]!
+    tokenBalance(symbol: String!, account: String!): [Balance!]!
+}

@@ -1,0 +1,32 @@
+type TokenParams {
+    tokenCreationFee: String!
+}
+
+type TokenMetadata {
+    url: String
+    icon: String
+    desc: String
+}
+
+type Token {
+    issuer: String!
+    symbol: String!
+    name: String!
+    metadata: TokenMetadata
+    precision: Int!
+    maxSupply: String!
+    supply: String!
+    circulatingSupply: String!
+}
+
+type SteempBalance {
+    account: String!
+    symbol: String!
+    balance: String!
+}
+
+type Query {
+    tokens(limit: Int, offset: Int): [Token!]!
+    tokenParams: [TokenParams!]!
+    steempBalance: SteempBalance!
+}

@@ -1,0 +1,48 @@
+type Buybook {
+    txId: String!
+    timestamp: Int!
+    account: String!
+    symbol: String!
+    quantity: String!
+    price: String!
+    tokensLocked: String!
+    expiration: Int!
+}
+
+type Sellbook {
+    txId: String!
+    timestamp: Int!
+    account: String!
+    symbol: String!
+    quantity: String!
+    price: String!
+    expiration: Int!
+}
+
+type TradesHistory {
+    type: String!
+    symbol: String!
+    quantity: String!
+    price: String!
+    timestamp: Int!
+}
+
+type Metrics {
+    symbol: String!
+    volume: String!
+    volumeExpiration: Int!
+    lastPrice: String!
+    lowestAsk: String!
+    highestBig: String!
+    lastDayPrice: String!
+    lastDayPriceExpiration: Int!
+    priceChangeSteem: String!
+    priceChangePercent: String!
+}
+
+type Query {
+    buyBook(symbol: String!, account: String): [Buybook!]
+    sellBook(symbol: String!, account: String): [Sellbook!]
+    tradesHistory(symbol: String!): [TradesHistory!]
+    metrics(limit: Int, offset: Int): [Metrics!]
+}
