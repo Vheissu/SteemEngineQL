@@ -1,6 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga'
-import { default as typeDefs } from './typeDefs'
-import { default as resolvers } from './resolvers'
+import { GraphQLServer } from 'graphql-yoga';
+import { default as typeDefs } from './typeDefs';
+import { default as resolvers } from './resolvers';
 
 const options = { port: process.env.PORT || 4999 };
 
