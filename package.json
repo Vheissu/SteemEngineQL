@@ -1,13 +1,13 @@
 {
-  "name": "steem-engine-api",
-  "description": "API server for Steem Engine",
+  "name": "steemengine-ql",
+  "description": "GraphQL API server for Steem Engine",
   "version": "0.1.0",
   "author": "Dwayne Charrington <dwaynecharrington@gmail.com>",
   "license": "MIT",
-  "homepage": "https://steem-engine.com",
+  "homepage": "https://steemit.com/@beggars",
   "private": true,
   "bugs": {
-    "url": "https://github.com/MattyIce/steem-engine/issues"
+    "url": "https://github.com/Vheissu/SteemEngineQL/issues"
   },
   "scripts": {
     "start": "nodemon --exec ts-node index.ts"
