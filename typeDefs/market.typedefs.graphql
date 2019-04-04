@@ -33,7 +33,7 @@ type Metrics {
     volumeExpiration: Int!
     lastPrice: String!
     lowestAsk: String!
-    highestBig: String!
+    highestBid: String!
     lastDayPrice: String!
     lastDayPriceExpiration: Int!
     priceChangeSteem: String!
