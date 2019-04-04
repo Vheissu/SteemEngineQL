@@ -21,6 +21,10 @@ This GraphQL layer aims to make it easier to request Steem Engine data in bulk w
 - A GraphQL server runs on port `4999` by default, this can be easily changed
 - While running, you can visit the playground and make queries `http://localhost:4999`
 
+## Demo / Playground
+
+You can see the API running here [https://graphql.steem.services/](https://graphql.steem.services/) which will allow you to try the following queries out.
+
 ## Usage
 
 You will then query the API using your chosen client-side GraphQL client to make queries to the API.
@@ -41,12 +45,12 @@ Gets all sent conversions to the conversions API.
 ```
 { 
 	conversionSent(account: "aggroed") {
-    count,
-    results {
-      from_coin_symbol,
-      to_coin_symbol
+        count,
+        results {
+            from_coin_symbol,
+            to_coin_symbol
+        }
     }
-  }
 }
 ```
 
@@ -62,12 +66,12 @@ Gets all received conversions from the conversions API.
 ```
 { 
 	conversionReceived(account: "aggroed") {
-    count,
-    results {
-      from_coin_symbol,
-      to_coin_symbol
+        count,
+        results {
+            from_coin_symbol,
+            to_coin_symbol
+        }
     }
-  }
 }
 ```
 
