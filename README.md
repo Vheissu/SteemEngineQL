@@ -21,6 +21,8 @@ This GraphQL layer aims to make it easier to request Steem Engine data in bulk w
 - A GraphQL server runs on port `4999` by default, this can be easily changed
 - While running, you can visit the playground and make queries `http://localhost:4999`
 
+You will need to set an environment variable call `NODE_ENV` to `development` to get the playground to display. You can do this by creating a file in the root of this project called `.env` and adding in this value: `NODE_ENV=development`
+
 ## Demo / Playground
 
 You can see the API running here [https://graphql.steem.services/](https://graphql.steem.services/) which will allow you to try the following queries out.
