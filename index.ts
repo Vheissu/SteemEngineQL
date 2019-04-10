@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 import { ApolloServer } from 'apollo-server';
+
 import { default as typeDefs } from './typeDefs';
 import { default as resolvers } from './resolvers';
 
