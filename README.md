@@ -308,3 +308,28 @@ Gets a users token balance for a specific token. It will also return the users S
     }
 }
 ```
+
+#### `history`
+
+**Accepted values:** ``account``(string), ``limit``(integer), ``offset``(integer), ``type``(string)
+**Required values:** account
+
+Get a historical representation of a users account history
+
+**Example query**:
+
+```
+{
+	history(account: "aggroed", limit: 1000, offset: 0) {
+  	block,
+    timestamp,
+    symbol,
+    from,
+    from_type,
+    to,
+    to_type,
+    memo,
+    quantity
+  }
+}
+```

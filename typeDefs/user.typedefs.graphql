@@ -4,7 +4,20 @@ type Balance {
     balance: String!
 }
 
+type AccountHistory {
+    block: String!
+    timestamp: String!
+    symbol: String!
+    from: String!
+    from_type: String!
+    to: String!
+    to_type: String!
+    memo: String
+    quantity: String!
+}
+
 type Query {
     balances(account: String!, limit: Int, offset: Int): [Balance!]!
     tokenBalance(symbol: String!, account: String!): [Balance!]!
+    history(account: String!, limit: Int, offset: Int, type: String): [AccountHistory]!
 }
