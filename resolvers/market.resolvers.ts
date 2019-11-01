@@ -1,4 +1,7 @@
 import { ssc } from '../client';
+import axios from 'axios';
+
+const MARKET_HISTORY_ENDPOINT = 'https://api.steem-engine.com/history/marketHistory';
 
 export default {
     Query: {
@@ -34,6 +37,18 @@ export default {
         metrics: async (_, { limit = 1000, offset = 0 }) => {
             const results: any[] = await ssc.find('market', 'metrics', { }, limit, offset, '', false);
             return results;
+        },
+
+        marketHistory: async (_, { symbol, timestampStart, timestampEnd,  }) => {
+            const result: any = await axios.get(MARKET_HISTORY_ENDPOINT, {
+                params: {
+                    symbol,
+                    timestampStart,
+                    timestampEnd
+                }
+            });
+
+            return result.data;
         }
     }
 }

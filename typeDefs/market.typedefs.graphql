@@ -40,9 +40,22 @@ type Metrics {
     priceChangePercent: String!
 }
 
+type History {
+    _id: String!
+    timestamp: Int!
+    symbol: String!
+    volumeSteem: String!
+    volumeToken: String!
+    lowestPrice: String!
+    highestPrice: String!
+    openPrice: String!
+    closePrice: String!
+}
+
 type Query {
     buyBook(symbol: String!, account: String, limit: Int, offset: Int): [Buybook!]
     sellBook(symbol: String!, account: String, limit: Int, offset: Int): [Sellbook!]
     tradesHistory(symbol: String!, limit: Int, offset: Int): [TradesHistory!]
     metrics(limit: Int, offset: Int): [Metrics!]
+    marketHistory(symbol: String!, timestampStart: Int, timestampEnd: Int): [History!]
 }
