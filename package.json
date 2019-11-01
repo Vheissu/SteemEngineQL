@@ -13,18 +13,18 @@
     "start": "nodemon --exec ts-node index.ts"
   },
   "dependencies": {
-    "apollo-server": "^2.4.8",
-    "axios": "^0.18.0",
+    "apollo-server": "^2.9.7",
+    "axios": "^0.19.0",
     "dataloader": "^1.4.0",
-    "dotenv": "^7.0.0",
-    "graphql": "^14.2.1",
-    "merge-graphql-schemas": "^1.5.8",
-    "sscjs": "^0.0.7",
-    "steem": "^0.7.4"
+    "dotenv": "^8.2.0",
+    "graphql": "^14.5.8",
+    "merge-graphql-schemas": "^1.7.0",
+    "sscjs": "^0.0.8",
+    "steem": "^0.7.9"
   },
   "devDependencies": {
-    "@types/node": "^11.13.0",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.4.1"
+    "@types/node": "^12.12.3",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.7.0-beta"
   }
 }
