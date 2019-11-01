@@ -5,14 +5,16 @@ export default {
         buyBook: async (_, { symbol, account, limit = 200, offset = 0 }) => {
             const params: any = { symbol, account };
 
-            const results: any[] = await ssc.find('market', 'buyBook', params, limit, offset, [{ index: 'price', descending: true }], false);
+            const results: any[] = await ssc.find('market', 'buyBook', params, limit, offset,
+                [{ index: 'priceDec', descending: true }], false);
             return results;
         },
 
         sellBook: async (_, { symbol, account, limit = 200, offset = 0 }) => {
             const params: any = { symbol, account };
 
-            const results: any[] = await ssc.find('market', 'sellBook', params, limit, offset, [{ index: 'price', descending: true }], false);
+            const results: any[] = await ssc.find('market', 'sellBook', params, limit, offset,
+                [{ index: 'priceDec', descending: true }], false);
             return results;
         },
 
@@ -21,8 +23,8 @@ export default {
 
             const results: any[] = await ssc.find('market', 'tradesHistory', params, limit, offset, [
                 { 
-                    index: 'timestamp', 
-                    descending: false 
+                    index: '_id',
+                    descending: true
                 }
             ], false);
 
