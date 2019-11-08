@@ -28,12 +28,39 @@ type Token {
 
 type SteempBalance {
     account: String!
-    symbol: String!
     balance: String!
+    symbol: String!
+    _id: Int!
+}
+
+type ContractTable {
+    hash: String!
+    nbIndexes: Int!
+    size: Int!
+}
+
+type ContractTables {
+    tokens_balances: ContractTable!
+    tokens_contractsBalances: ContractTable!
+    tokens_delegations: ContractTable!
+    tokens_params: ContractTable!
+    tokens_pendingUndelegations: ContractTable!
+    tokens_pendingUnstakes: ContractTable!
+    tokens_tokens: ContractTable!
+}
+
+type Contract {
+    code: String!
+    codeHash: String!
+    owner: String!
+    tables: ContractTables!
+    version: Int!
+    _id: String!
 }
 
 type Query {
     tokens(limit: Int, offset: Int): [Token!]!
+    contractInfo: Contract!
     tokenParams: [TokenParams!]!
     steempBalance: SteempBalance!
 }
