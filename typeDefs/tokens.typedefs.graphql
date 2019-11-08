@@ -9,14 +9,21 @@ type TokenMetadata {
 }
 
 type Token {
-    issuer: String!
-    symbol: String!
-    name: String!
-    metadata: TokenMetadata
-    precision: Int!
-    maxSupply: String!
-    supply: String!
     circulatingSupply: String!
+    delegationEnabled: Boolean!
+    issuer: String!
+    maxSupply: Int!
+    metadata: TokenMetadata
+    name: String!
+    numberTransactions: Int!
+    precision: Int!
+    stakingEnabled: Boolean!
+    supply: Int!
+    symbol: String!
+    totalStaked: String!
+    undelegationCooldown: Int!
+    unstakingCooldown: Int!
+    _id: Int!
 }
 
 type SteempBalance {
