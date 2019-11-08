@@ -33,7 +33,7 @@ type Transaction {
     databaseHash: String!
     executedCodeHash: String!
     hash: String!
-    logs: Log!
+    logs: Log
     payload: Payload!
     refSteemBlockNumber: Int!
     sender: String!
