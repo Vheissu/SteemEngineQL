@@ -30,8 +30,6 @@ export default {
         blockInfo: async (_: any, {blockNumber}) => {
             let result: any = await ssc.getBlockInfo(blockNumber);
 
-            console.log(result);
-
             result = parseBlockJsonStrings(result);
 
             return result;
