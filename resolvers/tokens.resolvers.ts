@@ -3,7 +3,20 @@ import { ssc } from '../client';
 export default {
     Query: {
         tokens: async (_: any, {limit = 1000, offset = 0}) => {
-            const results: any[] = await ssc.find('tokens', 'tokens', {}, limit, offset);
+            let results: any[] = await ssc.find('tokens', 'tokens', {}, limit, offset);
+
+            results = results.map(result => {
+                if (result?.metadata) {
+                    result.metadata = JSON.parse(result.metadata);
+                }
+                
+                return result;
+            });
+
+            return results;
+        },
+        contractInfo: async(_: any) => {
+            const results: any[] = await ssc.getContractInfo('tokens');
             return results;
         },
         tokenParams: async (_: any) => {
