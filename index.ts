@@ -4,12 +4,13 @@ import { ApolloServer } from 'apollo-server';
 
 import { default as typeDefs } from './typeDefs';
 import { default as resolvers } from './resolvers';
+import BigInt from 'apollo-type-bigint';
 
 const options = { port: process.env.PORT || 4999 };
 
 const server = new ApolloServer({
   typeDefs: typeDefs as any,
-  resolvers: resolvers as any,
+  resolvers: [ { BigInt: new BigInt('bigInt') }, ...resolvers ] as any,
   context: ({ req }) => ({
     ...req
   }),
