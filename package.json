@@ -18,13 +18,13 @@
     "dataloader": "^1.4.0",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
-    "merge-graphql-schemas": "^1.7.0",
+    "merge-graphql-schemas": "^1.7.3",
     "sscjs": "^0.0.8",
     "steem": "^0.7.9"
   },
   "devDependencies": {
-    "@types/node": "^12.12.3",
+    "@types/node": "^12.12.6",
     "ts-node": "^8.4.1",
-    "typescript": "^3.7.0-beta"
+    "typescript": "^3.7.2"
   }
 }
