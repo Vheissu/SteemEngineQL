@@ -10,19 +10,19 @@ type TokenMetadata {
 
 type Token {
     circulatingSupply: String!
-    delegationEnabled: Boolean!
+    delegationEnabled: Boolean
     issuer: String!
     maxSupply: Int!
     metadata: TokenMetadata
     name: String!
-    numberTransactions: Int!
+    numberTransactions: Int
     precision: Int!
-    stakingEnabled: Boolean!
+    stakingEnabled: Boolean
     supply: Int!
     symbol: String!
-    totalStaked: String!
-    undelegationCooldown: Int!
-    unstakingCooldown: Int!
+    totalStaked: String
+    undelegationCooldown: Int
+    unstakingCooldown: Int
     _id: Int!
 }
 
