@@ -33,6 +33,15 @@ export default {
             result = parseBlockJsonStrings(result);
 
             return result;
-        }
+        },
+        transactionInfo: async (_: any, {txId}) => {
+            let result: any = await ssc.getTransactionInfo(txId);
+
+            console.log(result);
+
+            result = parseBlockJsonStrings(result);
+
+            return result;
+        },
     }
 };

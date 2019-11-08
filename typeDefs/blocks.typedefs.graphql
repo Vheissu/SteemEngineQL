@@ -26,6 +26,7 @@ type Payload {
 }
 
 type Transaction {
+    blockNumber: Int
     action: String!
     contract: String!
     databaseHash: String!
@@ -58,4 +59,5 @@ type Block {
 type Query {
     latestBlockInfo: Block
     blockInfo(blockNumber: Int!): Block
+    transactionInfo(txId: String!): Transaction
 }
