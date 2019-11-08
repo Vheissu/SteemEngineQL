@@ -12,7 +12,7 @@ type Token {
     circulatingSupply: String!
     delegationEnabled: Boolean
     issuer: String!
-    maxSupply: BigInt!
+    maxSupply: Float!
     metadata: TokenMetadata
     name: String!
     numberTransactions: Int
