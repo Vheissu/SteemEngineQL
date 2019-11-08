@@ -18,7 +18,7 @@ type Token {
     numberTransactions: Int
     precision: Int!
     stakingEnabled: Boolean
-    supply: Int!
+    supply: BigInt!
     symbol: String!
     totalStaked: String
     undelegationCooldown: Int
