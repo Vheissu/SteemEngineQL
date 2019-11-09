@@ -2,8 +2,8 @@ import { ssc } from '../client';
 
 export default {
     Query: {
-        tokens: async (_: any, {limit = 1000, offset = 0}) => {
-            let results: any[] = await ssc.find('tokens', 'tokens', {}, limit, offset);
+        tokens: async (_: any, {limit = 1000, offset = 0, symbol}) => {
+            let results: any[] = await ssc.find('tokens', 'tokens', { symbol }, limit, offset);
 
             results = results.map(result => {
                 if (result?.metadata) {
