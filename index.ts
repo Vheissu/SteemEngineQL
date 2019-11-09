@@ -5,12 +5,25 @@ import { ApolloServer } from 'apollo-server';
 import { default as typeDefs } from './typeDefs';
 import { default as resolvers } from './resolvers';
 import BigInt from 'apollo-type-bigint';
+import { GraphQLScalarType } from 'graphql';
+
+const Tuple = new GraphQLScalarType({
+  name: 'Tuple',
+  serialize: (value) => {
+      // console.log('serialize value', value);
+      return value;
+  },
+  parseValue: (value) => {
+      // console.log('parseValue value', value);
+      return value;
+  }
+});
 
 const options = { port: process.env.PORT || 4999 };
 
 const server = new ApolloServer({
   typeDefs: typeDefs as any,
-  resolvers: [ { BigInt: new BigInt('bigInt') }, ...resolvers ] as any,
+  resolvers: [ { BigInt: new BigInt('bigInt') }, { Tuple }, ...resolvers ] as any,
   context: ({ req }) => ({
     ...req
   }),
