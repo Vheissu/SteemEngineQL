@@ -1,0 +1,18 @@
+type Auths {
+    weight_threshold: Int
+    account_auths: [String]!
+    key_auths: [String]
+}
+
+type Account {
+    id: Int!
+    name: String
+    owner: Auths
+    active: Auths
+    posting: Auths
+}
+
+type Query {
+    account(name: String!): Account
+    accounts(names: [String!]!): [Account]
+}
