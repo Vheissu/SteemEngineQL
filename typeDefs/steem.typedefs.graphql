@@ -1,15 +1,104 @@
+type SteemUserObject {
+    name: String
+    about: String
+    location: String
+    cover_image: String
+    profile_image: String
+    dtube_pub: String
+}
+
+type SteemUserMetadata {
+    profile: SteemUserObject
+}
+
 type Auths {
     weight_threshold: Int
-    account_auths: [String]!
-    key_auths: [String]
+    account_auths: [Tuple]!
+    key_auths: [Tuple]
+}
+
+type Manabar {
+    current_mana: String!
+    last_update_time: Int!
 }
 
 type Account {
     id: Int!
-    name: String
+    name: String!
     owner: Auths
     active: Auths
     posting: Auths
+    memo_key: String!
+    json_metadata: SteemUserMetadata
+    posting_json_metadata: SteemUserMetadata
+    proxy: String
+    last_owner_update: String
+    last_account_update: String
+    created: String
+    mined: Boolean!
+    recovery_account: String
+    last_account_recovery: String
+    reset_account: String
+    comment_count: Int!
+    lifetime_vote_count: Int!
+    post_count: Int!
+    can_vote: Boolean!
+    voting_manabar: Manabar
+    downvote_manabar: Manabar
+    voting_power: Int!
+    balance: String!
+    savings_balance: String!
+    sbd_balance: String!
+    sbd_seconds: String!
+    sbd_seconds_last_update: String!
+    sbd_last_interest_payment: String!
+    savings_sbd_balance: String!
+    savings_sbd_seconds: String!
+    savings_sbd_seconds_last_update: String!
+    savings_sbd_last_interest_payment: String!
+    savings_withdraw_requests: Int!
+    reward_sbd_balance: String!
+    reward_steem_balance: String!
+    reward_vesting_balance: String!
+    reward_vesting_steem: String!
+    vesting_shares: String!
+    delegated_vesting_shares: String!
+    received_vesting_shares: String!
+    vesting_withdraw_rate: String!
+    next_vesting_withdrawal: String!
+    withdrawn: Int!
+    to_withdraw: Int!
+    withdraw_routes: Int!
+    curation_rewards: Int!
+    posting_rewards: Int!
+    proxied_vsf_votes: [Int]!
+    witnesses_voted_for: Int!
+    last_post: String!
+    last_root_post: String!
+    last_vote_time: String!
+    post_bandwidth: Int!
+    pending_claimed_accounts: Int!
+    vesting_balance: String!
+    reputation: String!
+    transfer_history: [Tuple]
+    market_history: [Tuple]
+    post_history: [Tuple]
+    vote_history: [Tuple]
+    other_history: [Tuple]
+    witness_votes: [String]
+    tags_usage: [Tuple]
+    guest_bloggers: [Tuple]
+}
+
+input customJSON {
+    activeKey: String!
+    name: String!
+    id: String
+    json: String!
+}
+
+type Mutation {
+    customJSON(data: customJSON): String
 }
 
 type Query {
