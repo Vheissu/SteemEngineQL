@@ -2,8 +2,8 @@ import * as steem from 'steem';
 
 export default {
     Mutation: {
-        customJSON: async(_: any, { activeKey, name, id, json }) => {
-            const result = steem.broadcast.customJsonAsync(activeKey, [name], null, id, json);
+        customJSON: async(_: any, {input}) => {
+            const result = await steem.broadcast.customJsonAsync(input.activeKey, [input.name], null, input.id, JSON.stringify(input.json));
 
             console.log(result);
 

@@ -90,15 +90,28 @@ type Account {
     guest_bloggers: [Tuple]
 }
 
-input customJSON {
-    activeKey: String!
-    name: String!
+input CustomJSONInput {
+    activeKey: String
+    name: String
     id: String
-    json: String!
+    json: Tuple
+}
+
+type MutationResponse {
+    id: String!
+    block_num: Int!
+    trx_num: Int!
+    expired: Boolean!
+    ref_block_num: Int!
+    ref_block_prefix:: Int!
+    expiration: String!
+    operations: Tuple!
+    extensions: Tuple
+    signatures: [String!]!
 }
 
 type Mutation {
-    customJSON(data: customJSON): String
+    customJSON(input: CustomJSONInput): MutationResponse
 }
 
 type Query {
