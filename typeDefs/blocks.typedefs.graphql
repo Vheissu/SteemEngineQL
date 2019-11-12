@@ -1,64 +1,64 @@
 type EventData {
-    from: String!
-    to: String!
-    symbol: String!
-    quantity: String!
+  from: String!
+  to: String!
+  symbol: String!
+  quantity: String!
 }
 
 type Event {
-    contract: String!
-    event: String!
-    data: EventData!
+  contract: String!
+  event: String!
+  data: EventData!
 }
 
 type Log {
-    events: [Event]!
+  events: [Event]!
 }
 
 type Payload {
-    symbol: String!
-    to: String!
-    quantity: String!
-    memo: String!
-    beneficiaries: [String]
-    recipient: String
-    amountSTEEMSBD: String
-    isSignedWithActiveKey: Boolean!
+  symbol: String!
+  to: String!
+  quantity: String!
+  memo: String!
+  beneficiaries: [String]
+  recipient: String
+  amountSTEEMSBD: String
+  isSignedWithActiveKey: Boolean!
 }
 
 type Transaction {
-    blockNumber: Int
-    action: String!
-    contract: String!
-    databaseHash: String!
-    executedCodeHash: String!
-    hash: String!
-    logs: Log
-    payload: Payload!
-    refSteemBlockNumber: Int!
-    sender: String!
-    transactionId: String!
+  blockNumber: Int
+  action: String!
+  contract: String!
+  databaseHash: String!
+  executedCodeHash: String!
+  hash: String!
+  logs: Log
+  payload: Payload!
+  refSteemBlockNumber: Int!
+  sender: String!
+  transactionId: String!
 }
 
 type Block {
-    blockNumber: Int!
-    databaseHash: String!
-    hash: String!
-    merkleRoot: String!
-    prevRefSteemBlockId: String!
-    previousDatabaseHash: String!
-    previousHash: String!
-    refSteemBlockId: String!
-    refSteemBlockNumber: Int!
-    signature: String!
-    timestamp: String!
-    transactions: [Transaction]!
-    virtualTransactions: [String]
-    _id: Int!
+  blockNumber: Int!
+  databaseHash: String!
+  hash: String!
+  merkleRoot: String!
+  prevRefSteemBlockId: String!
+  previousDatabaseHash: String!
+  previousHash: String!
+  refSteemBlockId: String!
+  refSteemBlockNumber: Int!
+  signature: String!
+  timestamp: String!
+  transactions: [Transaction]!
+  virtualTransactions: [String]
+  _id: Int!
 }
 
 type Query {
-    latestBlockInfo: Block
-    blockInfo(blockNumber: Int!): Block
-    transactionInfo(txId: String!): Transaction
+  latestBlockInfo: Block
+  blockInfo(blockNumber: Int!): Block
+  transactionInfo(txId: String!): Transaction
 }

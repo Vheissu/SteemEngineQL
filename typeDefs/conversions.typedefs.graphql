@@ -1,29 +1,29 @@
 type ConversionResults {
-    url: String!
-    from_coin_symbol: String!
-    to_coin_symbol: String!
-    from_address: String!
-    to_address: String!
-    to_memo: String!
-    to_amount: String!
-    to_txid: String!
-    tx_fee: String!
-    ex_fee: String!
-    created_at: String!
-    updated_at: String!
-    deposit: String!
-    from_coin: String!
-    to_coin: String!
+  url: String!
+  from_coin_symbol: String!
+  to_coin_symbol: String!
+  from_address: String!
+  to_address: String!
+  to_memo: String!
+  to_amount: String!
+  to_txid: String!
+  tx_fee: String!
+  ex_fee: String!
+  created_at: String!
+  updated_at: String!
+  deposit: String!
+  from_coin: String!
+  to_coin: String!
 }
 
 type Conversions {
-    count: Int!
-    next: Int
-    previous: Int
-    results: [ConversionResults]
+  count: Int!
+  next: Int
+  previous: Int
+  results: [ConversionResults]
 }
 
 type Query {
-    conversionSent( account: String!, limit: Int, offset: Int): Conversions!
-    conversionReceived( account: String!, limit: Int, offset: Int): Conversions!
+  conversionSent(account: String!, limit: Int, offset: Int): Conversions!
+  conversionReceived(account: String!, limit: Int, offset: Int): Conversions!
 }

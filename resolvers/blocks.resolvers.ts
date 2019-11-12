@@ -6,7 +6,7 @@ const parseBlockJsonStrings = result => {
             if (transaction?.payload) {
                 transaction.payload = JSON.parse(transaction.payload);
             }
-        
+
             if (transaction?.logs) {
                 transaction.logs = JSON.parse(transaction.logs);
             }
@@ -27,14 +27,14 @@ export default {
 
             return result;
         },
-        blockInfo: async (_: any, {blockNumber}) => {
+        blockInfo: async (_: any, { blockNumber }) => {
             let result: any = await ssc.getBlockInfo(blockNumber);
 
             result = parseBlockJsonStrings(result);
 
             return result;
         },
-        transactionInfo: async (_: any, {txId}) => {
+        transactionInfo: async (_: any, { txId }) => {
             let result: any = await ssc.getTransactionInfo(txId);
 
             console.log(result);
