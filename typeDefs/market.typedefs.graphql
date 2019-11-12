@@ -56,6 +56,6 @@ type Query {
     buyBook(symbol: String!, account: String, limit: Int, offset: Int): [Buybook!]
     sellBook(symbol: String!, account: String, limit: Int, offset: Int): [Sellbook!]
     tradesHistory(symbol: String!, limit: Int, offset: Int): [TradesHistory!]
-    metrics(limit: Int, offset: Int): [Metrics!]
+    metrics(limit: Int, offset: Int, symbol: String, symbols: [String]): [Metrics!]
     marketHistory(symbol: String!, timestampStart: Int, timestampEnd: Int): [History!]
 }
