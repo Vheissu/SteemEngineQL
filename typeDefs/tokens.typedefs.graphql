@@ -59,7 +59,7 @@ type Contract {
 }
 
 type Query {
-  tokens(symbol: String, limit: Int, offset: Int): [Token!]!
+  tokens(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [Token!]!
   contractInfo: Contract!
   tokenParams: [TokenParams!]!
   steempBalance: SteempBalance!
