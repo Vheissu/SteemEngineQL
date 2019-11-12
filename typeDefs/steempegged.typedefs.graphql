@@ -1,0 +1,12 @@
+type Withdrawal {
+    id: String!
+    memo: String!
+    quantity: String!
+    recipient: String!
+    type: String!
+    _id: Int!
+}
+
+type Query {
+    pendingWithdrawals(account: String): [Withdrawal]
+}
