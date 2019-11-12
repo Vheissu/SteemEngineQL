@@ -103,7 +103,7 @@ type MutationResponse {
     trx_num: Int!
     expired: Boolean!
     ref_block_num: Int!
-    ref_block_prefix:: Int!
+    ref_block_prefix: Int!
     expiration: String!
     operations: Tuple!
     extensions: Tuple
