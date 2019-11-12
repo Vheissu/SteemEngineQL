@@ -35,11 +35,15 @@ export default {
         },
 
         metrics: async (_, { limit = 1000, offset = 0, symbol, symbols = [] }) => {
-            let results: any[] = await ssc.find('market', 'metrics', { symbol }, limit, offset, '', false);
+            const queryConfig = {
+                symbol,
+            };
 
             if (symbols.length) {
-                results = results.filter(token => symbols.includes(token.symbol));
+                queryConfig.symbol = { $in: symbols };
             }
+
+            let results: any[] = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
 
             return results;
         },
