@@ -3,7 +3,15 @@ import { ssc } from '../client';
 export default {
     Query: {
         tokens: async (_: any, {limit = 1000, offset = 0, symbol, symbols = []}) => {
-            let results: any[] = await ssc.find('tokens', 'tokens', { symbol }, limit, offset);
+            const queryConfig = {
+                symbol,
+            };
+
+            if (symbols.length) {
+                queryConfig.symbol = { $in: symbols };
+            }
+
+            let results: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
 
             results = results.map(result => {
                 if (result?.metadata) {
@@ -12,10 +20,6 @@ export default {
                 
                 return result;
             });
-
-            if (symbols.length) {
-                results = results.filter(token => symbols.includes(token.symbol));
-            }
 
             return results;
         },
