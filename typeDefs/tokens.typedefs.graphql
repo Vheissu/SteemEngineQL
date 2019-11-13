@@ -8,22 +8,22 @@ type TokenMetadata {
   desc: String
 }
 
-type Token {
+type Token @cacheControl(maxAge: 240) {
   circulatingSupply: String!
-  delegationEnabled: Boolean
-  issuer: String!
+  delegationEnabled: Boolean @cacheControl(maxAge: 240)
+  issuer: String! @cacheControl(maxAge: 500)
   maxSupply: Float!
   metadata: TokenMetadata
-  name: String!
+  name: String! @cacheControl(maxAge: 604800)
   numberTransactions: Int
-  precision: Int!
+  precision: Int! @cacheControl(maxAge: 500)
   stakingEnabled: Boolean
   supply: Float!
-  symbol: String!
+  symbol: String! @cacheControl(maxAge: 86400)
   totalStaked: String
   undelegationCooldown: Int
   unstakingCooldown: Int
-  _id: Int!
+  _id: Int! @cacheControl(maxAge: 86400)
 }
 
 type SteempBalance {

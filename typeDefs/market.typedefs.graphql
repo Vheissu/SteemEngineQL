@@ -1,4 +1,4 @@
-type Buybook {
+type Buybook @cacheControl(maxAge: 10) {
     txId: String!
     timestamp: Int!
     account: String!
@@ -9,7 +9,7 @@ type Buybook {
     expiration: Int!
 }
 
-type Sellbook {
+type Sellbook @cacheControl(maxAge: 10) {
     txId: String!
     timestamp: Int!
     account: String!
@@ -19,7 +19,7 @@ type Sellbook {
     expiration: Int!
 }
 
-type TradesHistory {
+type TradesHistory @cacheControl(maxAge: 10) {
     type: String!
     symbol: String!
     quantity: String!
@@ -27,7 +27,7 @@ type TradesHistory {
     timestamp: Int!
 }
 
-type Metrics {
+type Metrics @cacheControl(maxAge: 10) {
     symbol: String!
     volume: String!
     volumeExpiration: Int!
@@ -40,7 +40,7 @@ type Metrics {
     priceChangePercent: String!
 }
 
-type History {
+type History @cacheControl(maxAge: 10) {
     _id: String!
     timestamp: Int!
     symbol: String!
