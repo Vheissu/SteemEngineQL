@@ -1,7 +1,33 @@
+type ScotConfig {
+    downvote_weight_multiplier: Float!
+    downvoting_power: Float!
+    earned_mining_token: Float!
+    earned_other_token: Float!
+    earned_staking_token: Float!
+    earned_token: Float!
+    last_downvote_time: String!
+    last_follow_refresh_time: String!
+    last_post: String!
+    last_root_post: String!
+    last_vote_time: String!
+    last_won_mining_claim: String!
+    last_won_staking_claim: String!
+    muted: Boolean!
+    name: String!
+    pending_token: BigInt!
+    precision: Int!
+    staked_mining_power: Float!
+    staked_tokens: Float!
+    symbol: String!
+    voted_weight_multiplier: Float!
+    voting_power: Float!
+}
+
 type Balance {
     account: String!
     symbol: String!
     balance: String!
+    scotConfig: ScotConfig
 }
 
 type AccountHistory {
@@ -20,4 +46,5 @@ type Query {
     balances(account: String!, limit: Int, offset: Int): [Balance!]!
     tokenBalance(symbol: String!, account: String!): [Balance!]!
     history(account: String!, limit: Int, offset: Int, type: String): [AccountHistory]!
+    scotTokens(account: String!): [ScotConfig]
 }

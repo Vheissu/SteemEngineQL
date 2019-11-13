@@ -2,22 +2,52 @@ import { ssc } from '../client';
 import axios from 'axios';
 
 const HISTORY_API_ENDPOINT = 'https://api.steem-engine.com/accounts/history';
+const SCOT_API = 'https://scot-api.steem-engine.com/';
+
+async function getScotConfigForAccount(account: string) {
+    const result = await axios.get(`${SCOT_API}@${account}`);
+
+    return result.data;
+}
 
 export default {
     Query: {
         balances: async (_: any, { account, limit = 1000, offset = 0 }) => {
-            const results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
+            let results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
+
+            const scotConfig = await getScotConfigForAccount(account);
+
+            if (results && Object.keys(scotConfig).length) {
+                for (const token of results) {
+                    const scotConfigToken = scotConfig[token.symbol];
+
+                    if (scotConfigToken) {
+                        token.scotConfig = scotConfigToken;
+                    }
+                }
+            }
+
             return results;
         },
         tokenBalance: async (_: any, { symbol, account }) => {
-            const params: any = { symbol, account };
-
             const results: any[] = await ssc.find('tokens', 'balances', {
                 account,
                 symbol: {
                     '$in': [symbol, 'STEEMP'] 
                 }
             }, 2, 0, '', false);
+
+            const scotConfig = await getScotConfigForAccount(account);
+
+            if (results && Object.keys(scotConfig).length) {
+                for (const token of results) {
+                    const scotConfigToken = scotConfig[token.symbol];
+
+                    if (scotConfigToken) {
+                        token.scotConfig = scotConfigToken;
+                    }
+                }
+            }
 
             return results;
         },
@@ -35,6 +65,18 @@ export default {
                 }
             });
             return result.data;
+        },
+        scotTokens: async (_: any, { account }) => {
+            const scotConfig = await getScotConfigForAccount(account);
+            const keys = Object.keys(scotConfig);
+            
+            const results = keys.reduce((acc: any[], value: any) => {
+                acc.push(scotConfig[value]);
+
+                return acc;
+            }, []);
+
+            return results;
         },
     }
 }
