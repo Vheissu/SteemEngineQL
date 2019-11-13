@@ -27,6 +27,11 @@ type Balance {
     account: String!
     symbol: String!
     balance: String!
+    delegationsIn: String
+    delegationsOut: String
+    pendingUndelegations: String
+    stake: String
+    pendingUnstake: String
     scotConfig: ScotConfig
 }
 
