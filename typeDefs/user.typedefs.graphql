@@ -26,12 +26,12 @@ type ScotConfig {
 type Balance {
     account: String!
     symbol: String!
-    balance: String!
-    delegationsIn: String
-    delegationsOut: String
-    pendingUndelegations: String
-    stake: String
-    pendingUnstake: String
+    balance: Float!
+    delegationsIn: Float
+    delegationsOut: Float
+    pendingUndelegations: Float
+    stake: Float
+    pendingUnstake: Float
     scotConfig: ScotConfig
 }
 

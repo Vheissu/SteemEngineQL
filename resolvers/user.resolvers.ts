@@ -15,6 +15,28 @@ export default {
         balances: async (_: any, { account, limit = 1000, offset = 0 }) => {
             let results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
 
+            for (const token of results) {
+                if (token?.balance) {
+                    token.balance = parseFloat(token.balance);
+                }
+
+                if (token?.delegationsIn) {
+                    token.delegationsIn = parseFloat(token.delegationsIn);
+                }
+
+                if (token?.delegationsOut) {
+                    token.delegationsOut = parseFloat(token.delegationsOut);
+                }
+
+                if (token?.stake) {
+                    token.stake = parseFloat(token.stake);
+                }
+
+                if (token?.pendingUnstake) {
+                    token.pendingUnstake = parseFloat(token.pendingUnstake);
+                }
+            }
+
             const scotConfig = await getScotConfigForAccount(account);
 
             if (results && Object.keys(scotConfig).length) {
@@ -36,6 +58,28 @@ export default {
                     '$in': [symbol, 'STEEMP'] 
                 }
             }, 2, 0, '', false);
+
+            for (const token of results) {
+                if (token?.balance) {
+                    token.balance = parseFloat(token.balance);
+                }
+
+                if (token?.delegationsIn) {
+                    token.delegationsIn = parseFloat(token.delegationsIn);
+                }
+
+                if (token?.delegationsOut) {
+                    token.delegationsOut = parseFloat(token.delegationsOut);
+                }
+
+                if (token?.stake) {
+                    token.stake = parseFloat(token.stake);
+                }
+
+                if (token?.pendingUnstake) {
+                    token.pendingUnstake = parseFloat(token.pendingUnstake);
+                }
+            }
 
             const scotConfig = await getScotConfigForAccount(account);
 
