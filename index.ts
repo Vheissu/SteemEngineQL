@@ -25,7 +25,7 @@ const server = new ApolloServer({
   typeDefs: typeDefs as any,
   resolvers: [ { BigInt: new BigInt('bigInt') }, { Tuple }, ...resolvers ] as any,
   cacheControl: {
-    defaultMaxAge: 20,
+    defaultMaxAge: 5,
   },
   context: ({ req }) => ({
     ...req
