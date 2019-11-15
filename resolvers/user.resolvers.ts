@@ -35,6 +35,10 @@ export default {
                 if (token?.pendingUnstake) {
                     token.pendingUnstake = parseFloat(token.pendingUnstake);
                 }
+
+                if (token?.metadata) {
+                    token.metadata = JSON.parse(token.metadata);
+                }
             }
 
             const scotConfig = await getScotConfigForAccount(account);
@@ -78,6 +82,10 @@ export default {
 
                 if (token?.pendingUnstake) {
                     token.pendingUnstake = parseFloat(token.pendingUnstake);
+                }
+
+                if (token?.metadata) {
+                    token.metadata = JSON.parse(token.metadata);
                 }
             }
 

@@ -32,6 +32,7 @@ type Balance {
     pendingUndelegations: Float
     stake: Float
     pendingUnstake: Float
+    metadata: TokenMetadata
     scotConfig: ScotConfig
 }
 
