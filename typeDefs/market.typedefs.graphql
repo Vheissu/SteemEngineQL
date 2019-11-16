@@ -27,7 +27,7 @@ type TradesHistory @cacheControl(maxAge: 5) {
     timestamp: Int!
 }
 
-type Metrics @cacheControl(maxAge: 5) {
+type Metric @cacheControl(maxAge: 5) {
     symbol: String!
     volume: String!
     volumeExpiration: Int!
@@ -56,6 +56,6 @@ type Query {
     buyBook(symbol: String!, account: String, limit: Int, offset: Int): [Buybook!]
     sellBook(symbol: String!, account: String, limit: Int, offset: Int): [Sellbook!]
     tradesHistory(symbol: String!, limit: Int, offset: Int): [TradesHistory!]
-    metrics(limit: Int, offset: Int, symbol: String, symbols: [String]): [Metrics!]
+    metrics(limit: Int, offset: Int, symbol: String, symbols: [String]): [Metric!]
     marketHistory(symbol: String!, timestampStart: Int, timestampEnd: Int): [History!]
 }
