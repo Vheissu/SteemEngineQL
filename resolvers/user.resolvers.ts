@@ -15,6 +15,14 @@ export default {
         balances: async (_: any, { account, limit = 1000, offset = 0 }) => {
             let results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
 
+            const symbols = results.reduce((acc: string[], value: any) => {
+                acc.push(value.symbol);
+                return acc;
+            }, []);
+
+            const tokens = await ssc.find('tokens', 'tokens', { symbol: { $in: symbols } }, 1000, 0);
+            const metrics = await ssc.find('market', 'metrics', { symbol: { $in: symbols } }, 1000, 0, '', false);
+
             for (const token of results) {
                 if (token?.balance) {
                     token.balance = parseFloat(token.balance);
@@ -36,8 +44,14 @@ export default {
                     token.pendingUnstake = parseFloat(token.pendingUnstake);
                 }
 
-                if (token?.metadata) {
-                    token.metadata = JSON.parse(token.metadata);
+                const findToken = tokens.find(t => t.symbol === token.symbol);
+                const findMetric = metrics.find(m => m.symbol === token.symbol);
+
+                token.token = findToken;
+                token.metric = findMetric;
+
+                if (token.token) {
+                    token.token.metadata = JSON.parse(token.token.metadata);
                 }
             }
 
