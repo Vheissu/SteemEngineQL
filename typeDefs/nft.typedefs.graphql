@@ -1,0 +1,50 @@
+type NftMetadata {
+    url: String
+    icon: String
+    desc: String
+}
+
+type NftProperty {
+    authorizedIssuingAccounts: [String]
+    authorizedIssuingContracts: [String]
+    isReadOnly: Boolean!
+    name: String!
+    type: String!
+}
+
+type Nft {
+    _id: Int!
+    issuer: String!
+    symbol: String!
+    name: String!
+    metadata: NftMetadata
+    maxSupply: Int!
+    supply: Int!
+    circulatingsupply: Int
+    delegationEnabled: Boolean!
+    undelegationCooldown: Int!
+    authorizedIssuingAccounts: [String]
+    authorizedIssuingContracts: [String]
+    properties: [NftProperty]
+}
+
+type NftDelegatee {
+    account: String!
+    ownedBy: String!
+    undelegateAt: Int
+}
+
+type NftInstance {
+    _id: Int!
+    account: String
+    ownedBy: String
+    lockedTokens: Tuple
+    properties: Tuple
+    delegatedTo: NftDelegatee
+}
+
+type Query {
+    nfts(account: String): [Nft]
+    nft(symbol: String!): Nft
+    instances(symbol: String!, account: String): [NftInstance]
+}

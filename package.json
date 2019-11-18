@@ -10,7 +10,7 @@
     "url": "https://github.com/Vheissu/SteemEngineQL/issues"
   },
   "scripts": {
-    "start": "nodemon --exec ts-node index.ts"
+    "start": "nodemon"
   },
   "dependencies": {
     "apollo-server": "^2.9.7",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^12.12.6",
     "apollo-type-bigint": "^0.1.3",
+    "nodemon": "^1.19.4",
     "ts-node": "^8.5.0",
     "typescript": "^3.7.2"
   }
