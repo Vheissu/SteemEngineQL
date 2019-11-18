@@ -1,0 +1,26 @@
+type NftMetadata {
+    url: String
+    icon: String
+    desc: String
+}
+
+type Nft {
+    _id: Int!
+    issuer: String!
+    symbol: String!
+    name: String!
+    metadata: NftMetadata
+    maxSupply: Int!
+    supply: Int!
+    circulatingsupply: Int!
+    delegationEnabled: Boolean!
+    undelegationCooldown: Int!
+    authorizedIssuingAccounts: [String]
+    authorizedIssuingContracts: [String]
+    properties: Tuple
+}
+
+type Query {
+    nfts(account: String): [Nft]
+    nft(symbol: String!): Nft
+}
