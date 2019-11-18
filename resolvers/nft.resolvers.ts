@@ -11,6 +11,16 @@ export default {
                 if (nft?.metadata) {
                     nft.metadata = JSON.parse(nft.metadata);
                 }
+
+                if (nft?.properties) {
+                    let finalProperties = [];
+
+                    for (const [key, value] of Object.entries(nft.properties) as any) {
+                        finalProperties.push({ name: key, ...value });
+                    }
+
+                    nft.properties = finalProperties;
+                }
             }
 
             return results;
@@ -23,7 +33,17 @@ export default {
                 result.metadata = JSON.parse(result.metadata);
             }
 
+            if (result?.properties) {
+                let finalProperties = [];
+
+                for (const [key, value] of Object.entries(result.properties) as any) {
+                    finalProperties.push({ name: key, ...value });
+                }
+
+                result.properties = finalProperties;
+            }
+
             return result;
-        }
+        },
     }
 }
