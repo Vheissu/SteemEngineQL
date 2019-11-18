@@ -6,6 +6,7 @@ module.exports = {
             args: 'index.ts',
             env: {
                 NODE_ENV: 'development',
+                PORT: 4999
             },
             env_production: {
                 NODE_ENV: 'production',
@@ -17,6 +18,7 @@ module.exports = {
             args: 'index.ts',
             env: {
                 NODE_ENV: 'staging',
+                PORT: 4998
             },
             env_production: {
                 NODE_ENV: 'production',
