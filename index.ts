@@ -30,8 +30,8 @@ const server = new ApolloServer({
   context: ({ req }) => ({
     ...req
   }),
-  playground: process.env.NODE_ENV === 'development',
-  debug: process.env.NODE_ENV === 'development'
+  playground: process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging',
+  debug: process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging'
 })
 
 server.listen(options)
