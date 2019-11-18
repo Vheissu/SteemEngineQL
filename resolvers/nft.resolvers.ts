@@ -46,8 +46,8 @@ export default {
             return result;
         },
 
-        instances: async (_: any, { symbol, limit = 200, offset = 0 }: any) => {
-            const params: any = { symbol };
+        instances: async (_: any, { symbol, account, limit = 200, offset = 0 }: any) => {
+            const params: any = { account };
 
             const results: any[] = await ssc.find('nft', `${symbol.toUpperCase()}instances`, params, limit, offset, [], false);
 

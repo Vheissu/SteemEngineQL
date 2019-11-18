@@ -20,7 +20,7 @@ type Nft {
     metadata: NftMetadata
     maxSupply: Int!
     supply: Int!
-    circulatingsupply: Int!
+    circulatingsupply: Int
     delegationEnabled: Boolean!
     undelegationCooldown: Int!
     authorizedIssuingAccounts: [String]
@@ -36,8 +36,8 @@ type NftDelegatee {
 
 type NftInstance {
     _id: Int!
-    account: String!
-    ownedBy: String!
+    account: String
+    ownedBy: String
     lockedTokens: Tuple
     properties: Tuple
     delegatedTo: NftDelegatee
@@ -46,5 +46,5 @@ type NftInstance {
 type Query {
     nfts(account: String): [Nft]
     nft(symbol: String!): Nft
-    instances(symbol: String!): NftInstance
+    instances(symbol: String!, account: String): [NftInstance]
 }
