@@ -5,8 +5,8 @@ type NftMetadata {
 }
 
 type NftProperty {
-    authorizedIssuingAccounts: [String]
-    authorizedIssuingContracts: [String]
+    authorizedEditingAccounts: [String]
+    authorizedEditingContracts: [String]
     isReadOnly: Boolean!
     name: String!
     type: String!
@@ -20,7 +20,7 @@ type Nft {
     metadata: NftMetadata
     maxSupply: Int!
     supply: Int!
-    circulatingsupply: Int
+    circulatingSupply: Int
     delegationEnabled: Boolean!
     undelegationCooldown: Int!
     authorizedIssuingAccounts: [String]
