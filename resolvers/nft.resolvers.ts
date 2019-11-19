@@ -53,5 +53,17 @@ export default {
 
             return results;
         },
+
+        nftParams: async (_: any) => {
+            const result = await ssc.findOne('nft', 'params', {  });
+
+            for (const [key, value] of Object.entries(result) as any) {
+                if (!Object.keys(value)) {
+                    result[key] = parseFloat(value);
+                }
+            }
+
+            return result;
+        },
     }
 }

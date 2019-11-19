@@ -43,8 +43,16 @@ type NftInstance {
     delegatedTo: NftDelegatee
 }
 
+type NftParam {
+    nftCreationFee: Int!
+    nftIssuanceFee: Tuple!
+    dataPropertyCreationFee: Int!
+    enableDelegationFee: Int!
+}
+
 type Query {
     nfts(account: String): [Nft]
     nft(symbol: String!): Nft
+    nftParams: NftParam
     instances(symbol: String!, account: String): [NftInstance]
 }
