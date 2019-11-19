@@ -3,7 +3,11 @@ import { ssc } from '../client';
 export default {
     Query: {
         nfts: async (_: any, { account, limit = 200, offset = 0 }: any) => {
-            const params: any = { account };
+            const params: any = { };
+
+            if (account) {
+                params.issuer = account;
+            }
 
             const results: any[] = await ssc.find('nft', 'nfts', params, limit, offset, [], false);
             
@@ -44,6 +48,26 @@ export default {
             }
 
             return result;
+        },
+
+        userNfts: async (_: any, { account, limit = 1000, offset = 0 }) => {
+            let userOwnedNfts = [];
+
+            const nfts: any[] = await ssc.find('nft', 'nfts', {  }, limit, offset, [], false);
+
+            for (const nft of nfts) {
+                const instances: any[] = await ssc.find('nft', `${nft.symbol}instances`, { account }, limit, offset, [], false);
+
+                for (const instance of instances) {
+                    instance.symbol = nft.symbol;
+                }
+
+                if (instances) {
+                    userOwnedNfts = [ ...userOwnedNfts, ...instances ];
+                }
+            }
+
+            return userOwnedNfts;
         },
 
         instances: async (_: any, { symbol, account, limit = 200, offset = 0 }: any) => {
