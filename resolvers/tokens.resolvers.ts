@@ -24,9 +24,47 @@ export default {
                 const metric = metrics.find(m => token.symbol == m.symbol);
 
                 if (metric) {
+                    metric.highestBid = parseFloat(metric.highestBid);
+                    metric.lastPrice = parseFloat(metric.lastPrice);
+                    metric.lowestAsk = parseFloat(metric.lowestAsk);
+                    metric.marketCap = metric.lastPrice * parseFloat(token.circulatingSupply);
+                    metric.lastDayPrice = parseFloat(metric.lastDayPrice);
+
+                    if (Date.now() / 1000 < metric.volumeExpiration) {
+                        metric.volume = parseFloat(metric.volume);
+                    }
+        
+                    if (Date.now() / 1000 < metric.lastDayPriceExpiration) {
+                        metric.priceChangePercent = parseFloat(metric.priceChangePercent);
+                        metric.priceChangeSteem = parseFloat(metric.priceChangeSteem);
+                    }
+                    
                     token.metric = metric;
+                } else {
+                    token.metric = {
+                        highestBid: 0,
+                        lastPrice: 0,
+                        lowestAsk: 0,
+                        marketCap: 0,
+                        volume: 0,
+                        lastDayPrice: 0,
+                        priceChangePercent: 0,
+                        priceChangeSteem: 0
+                    };
                 }
+
+                if (token.symbol === 'STEEMP') {
+                    token.metric.lastPrice = 1;
+                }
+
+                results.push(token);
             }
+
+            results.sort((a, b) => {
+                return (
+                    (b.metric.volume > 0 ? b.metric.volume : b.metric.marketCap / 1000000000) - (a.metric.volume > 0 ? a.metric.volume : a.metric.marketCap / 1000000000)
+                );
+            });
 
             return results;
         },
