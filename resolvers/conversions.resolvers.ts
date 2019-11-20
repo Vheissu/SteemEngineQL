@@ -6,7 +6,7 @@ const CONVERT_API_ENDPOINT = 'https://converter-api.steem-engine.com/api/convers
 export default {
     Query: {
         coinPairs: async(_: any, {}) => {
-            const coins = await axios.get(`${CONVERT_API_ENDPOINT}/coins/`, {
+            const coins = await axios.get(`${CONVERT_API_ENDPOINT}coins/`, {
                 headers: {
                     'Origin': 'https://steem-engine.com',
                     'Referer': 'https://steem-engine.com/?p=conversion_history',
@@ -14,7 +14,7 @@ export default {
                 }
             });
 
-            const pairs = await axios.get(`${CONVERT_API_ENDPOINT}/pairs/`, {
+            const pairs = await axios.get(`${CONVERT_API_ENDPOINT}pairs/`, {
                 headers: {
                     'Origin': 'https://steem-engine.com',
                     'Referer': 'https://steem-engine.com/?p=conversion_history',
