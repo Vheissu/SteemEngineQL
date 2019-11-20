@@ -53,6 +53,13 @@ export default {
                 if (token.token) {
                     token.token.metadata = JSON.parse(token.token.metadata);
                 }
+
+                if (token?.metric?.lastDayPriceExpiration >= 0) {
+                    if (Date.now() / 1000 < token.metric.lastDayPriceExpiration) {
+                        token.metric.priceChangePercent = parseFloat(token.metric.priceChangePercent);
+                        token.metric.priceChangeSteem = parseFloat(token.metric.priceChangeSteem);
+                    }
+                }
             }
 
             const scotConfig = await getScotConfigForAccount(account);
