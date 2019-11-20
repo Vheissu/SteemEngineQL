@@ -14,6 +14,7 @@ type Token @cacheControl(maxAge: 240) {
   issuer: String! @cacheControl(maxAge: 500)
   maxSupply: Float!
   metadata: TokenMetadata
+  metric: Metric!
   name: String! @cacheControl(maxAge: 604800)
   numberTransactions: Int
   precision: Int! @cacheControl(maxAge: 500)

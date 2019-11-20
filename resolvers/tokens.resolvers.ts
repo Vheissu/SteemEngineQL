@@ -11,15 +11,22 @@ export default {
                 queryConfig.symbol = { $in: symbols };
             }
 
-            let results: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
+            const results = [];
 
-            results = results.map(result => {
-                if (result?.metadata) {
-                    result.metadata = JSON.parse(result.metadata);
+            const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
+            const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
+
+            for (const token of tokens) {
+                if (token?.metadata) {
+                    token.metadata = JSON.parse(token.metadata);
                 }
-                
-                return result;
-            });
+
+                const metric = metrics.find(m => token.symbol == m.symbol);
+
+                if (metric) {
+                    token.metric = metric;
+                }
+            }
 
             return results;
         },
