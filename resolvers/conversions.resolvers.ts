@@ -1,7 +1,6 @@
-import { ssc } from '../client';
 import axios from 'axios';
 
-const CONVERT_API_ENDPOINT = 'https://converter-api.steem-engine.com/api/conversions/';
+const CONVERT_API_ENDPOINT = 'https://converter-api.steem-engine.com/api/';
 
 export default {
     Query: {
@@ -53,7 +52,7 @@ export default {
         },
 
         conversionSent: async (_: any, { account, limit = 20, offset = 0 }) => {
-            const result = await axios.get(CONVERT_API_ENDPOINT, {
+            const result = await axios.get(`${CONVERT_API_ENDPOINT}/conversions/`, {
                 headers: {
                     'Origin': 'https://steem-engine.com',
                     'Referer': 'https://steem-engine.com/?p=conversion_history',
