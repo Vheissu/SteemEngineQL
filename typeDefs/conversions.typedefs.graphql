@@ -30,7 +30,7 @@ type TokenPair {
 }
 
 type Query {
-  coinPairs: [TokenPair]
+  coinPairs: [TokenPair] @cacheControl(maxAge: 3600)
   conversionSent(account: String!, limit: Int, offset: Int): Conversions!
   conversionReceived(account: String!, limit: Int, offset: Int): Conversions!
 }
