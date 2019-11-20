@@ -48,7 +48,7 @@ export default {
                         marketCap: 0,
                         volume: 0,
                         lastDayPrice: 0,
-                        priceChangePercent: 0,
+                        priceChangePercent: '',
                         priceChangeSteem: 0
                     };
                 }
