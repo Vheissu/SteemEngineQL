@@ -37,7 +37,7 @@ type Metric @cacheControl(maxAge: 10) {
     lastDayPrice: Float
     lastDayPriceExpiration: Int
     priceChangeSteem: Float
-    priceChangePercent: String
+    priceChangePercent: Float
     marketCap: Float
 }
 
