@@ -29,7 +29,10 @@ export default {
                     metric.lowestAsk = parseFloat(metric.lowestAsk);
                     metric.marketCap = metric.lastPrice * parseFloat(token.circulatingSupply);
                     metric.lastDayPrice = parseFloat(metric.lastDayPrice);
-                    metric.priceChangeSteem = metric.priceChangeSteem.replace('%', '');
+
+                    if (metric.priceChangePercent !== null) {
+                        metric.priceChangePercent = metric.priceChangePercent.replace('%', '');
+                    }
 
                     if (Date.now() / 1000 < metric.volumeExpiration) {
                         metric.volume = parseFloat(metric.volume);
