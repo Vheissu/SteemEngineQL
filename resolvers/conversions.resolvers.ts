@@ -52,7 +52,7 @@ export default {
         },
 
         conversionSent: async (_: any, { account, limit = 20, offset = 0 }) => {
-            const result = await axios.get(`${CONVERT_API_ENDPOINT}/conversions/`, {
+            const result = await axios.get(`${CONVERT_API_ENDPOINT}conversions/`, {
                 headers: {
                     'Origin': 'https://steem-engine.com',
                     'Referer': 'https://steem-engine.com/?p=conversion_history',
@@ -68,7 +68,7 @@ export default {
         },
 
         conversionReceived: async (_: any, { account, limit = 20, offset = 0 }) => {
-            const result = await axios.get(CONVERT_API_ENDPOINT, {
+            const result = await axios.get(`${CONVERT_API_ENDPOINT}conversions/`, {
                 headers: {
                     'Origin': 'https://steem-engine.com',
                     'Referer': 'https://steem-engine.com/?p=conversion_history',
