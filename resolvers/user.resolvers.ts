@@ -53,6 +53,22 @@ export default {
                 if (token.token) {
                     token.token.metadata = JSON.parse(token.token.metadata);
                 }
+                
+                if (token.metric) {
+                    token.metric.highestBid = parseFloat(token.metric.highestBid);
+                    token.metric.lastPrice = parseFloat(token.metric.lastPrice);
+                    token.metric.lowestAsk = parseFloat(token.metric.lowestAsk);
+                    token.metric.marketCap = token.metric.lastPrice * parseFloat(token.circulatingSupply);
+                    token.metric.lastDayPrice = parseFloat(token.metric.lastDayPrice);
+
+                    if (token.metric.priceChangePercent !== null) {
+                        token.metric.priceChangePercent = token.metric.priceChangePercent.replace('%', '');
+                    }
+                }
+
+                if (Date.now() / 1000 < token.metric.volumeExpiration) {
+                    token.metric.volume = parseFloat(token.metric.volume);
+                }
 
                 if (token?.metric?.lastDayPriceExpiration >= 0) {
                     if (Date.now() / 1000 < token.metric.lastDayPriceExpiration) {
