@@ -66,8 +66,10 @@ export default {
                     }
                 }
 
-                if (Date.now() / 1000 < token.metric.volumeExpiration) {
-                    token.metric.volume = parseFloat(token.metric.volume);
+                if (token?.metric?.volumeExpiration >= 0) {
+                    if (Date.now() / 1000 < token.metric.volumeExpiration) {
+                        token.metric.volume = parseFloat(token.metric.volume);
+                    }
                 }
 
                 if (token?.metric?.lastDayPriceExpiration >= 0) {
