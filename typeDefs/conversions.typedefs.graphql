@@ -23,7 +23,14 @@ type Conversions {
   results: [ConversionResults]
 }
 
+type TokenPair {
+  name: String
+  pegged_token_symbol: String
+  symbol: String
+}
+
 type Query {
+  coinPairs: [TokenPair]
   conversionSent(account: String!, limit: Int, offset: Int): Conversions!
   conversionReceived(account: String!, limit: Int, offset: Int): Conversions!
 }
