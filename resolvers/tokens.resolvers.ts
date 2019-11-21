@@ -2,7 +2,7 @@ import { ssc } from '../client';
 
 export default {
     Query: {
-        tokens: async (_: any, {limit = 1000, offset = 0, symbol, symbols = [], resultLimit = 100, resultOffset = 0}) => {
+        tokens: async (_: any, {limit = 1000, offset = 0, symbol, symbols = []}) => {
             const queryConfig = {
                 symbol,
             };
@@ -14,6 +14,17 @@ export default {
             const results = [];
 
             const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
+
+            if (!symbols.length) {
+                const tokenSymbols = [];
+
+                for (const token of tokens) {
+                    tokenSymbols.push(token.symbol);
+                }
+
+                queryConfig.symbol = { $in: tokenSymbols };
+            }
+
             const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
 
             for (const token of tokens) {
@@ -70,7 +81,7 @@ export default {
                 );
             });
 
-            return results.slice(resultOffset * resultLimit, (resultOffset + 1) * resultLimit);
+            return results;
         },
         contractInfo: async(_: any) => {
             const results: any[] = await ssc.getContractInfo('tokens');
