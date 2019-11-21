@@ -70,7 +70,7 @@ export default {
                 );
             });
 
-            return results.slice(resultOffset, resultOffset + resultLimit);
+            return results.slice(resultOffset * resultLimit, (resultOffset + 1) * resultLimit);
         },
         contractInfo: async(_: any) => {
             const results: any[] = await ssc.getContractInfo('tokens');
