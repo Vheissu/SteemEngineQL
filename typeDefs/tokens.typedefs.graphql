@@ -59,17 +59,8 @@ type Contract {
   _id: String!
 }
 
-type Pagination {
-  total: Int
-}
-
-type TokenResponse {
-  results: [Token]!
-  pagination: Pagination
-}
-
 type Query {
-  tokens(symbol: String, limit: Int, resultLimit: Int, offset: Int, resultOffset: Int, symbol: String, symbols: [String]): TokenResponse!
+  tokens(symbol: String, limit: Int, resultLimit: Int, offset: Int, resultOffset: Int, symbol: String, symbols: [String]): [Token!]!
   contractInfo: Contract!
   tokenParams: [TokenParams!]!
   steempBalance: SteempBalance

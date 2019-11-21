@@ -70,12 +70,7 @@ export default {
                 );
             });
 
-            return {
-                results: results.slice(resultOffset, resultOffset + resultLimit),
-                pagination: {
-                    total: results.length
-                }
-            };
+            return results.slice(resultOffset, resultOffset + resultLimit);
         },
         contractInfo: async(_: any) => {
             const results: any[] = await ssc.getContractInfo('tokens');
