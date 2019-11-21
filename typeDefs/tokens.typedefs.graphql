@@ -9,6 +9,7 @@ type TokenMetadata {
 }
 
 type Token @cacheControl(maxAge: 240) {
+  _id: Int! @cacheControl(maxAge: 86400)
   circulatingSupply: String!
   delegationEnabled: Boolean @cacheControl(maxAge: 240)
   issuer: String! @cacheControl(maxAge: 500)
@@ -24,7 +25,6 @@ type Token @cacheControl(maxAge: 240) {
   totalStaked: String
   undelegationCooldown: Int
   unstakingCooldown: Int
-  _id: Int! @cacheControl(maxAge: 86400)
 }
 
 type SteempBalance {
@@ -59,8 +59,17 @@ type Contract {
   _id: String!
 }
 
+type Pagination {
+  total: Int
+}
+
+type TokenResponse {
+  results: [Token]!
+  pagination: Pagination
+}
+
 type Query {
-  tokens(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [Token!]!
+  tokens(symbol: String, limit: Int, resultLimit: Int, offset: Int, resultOffset: Int, symbol: String, symbols: [String]): TokenResponse!
   contractInfo: Contract!
   tokenParams: [TokenParams!]!
   steempBalance: SteempBalance

@@ -2,7 +2,7 @@ import { ssc } from '../client';
 
 export default {
     Query: {
-        tokens: async (_: any, {limit = 1000, offset = 0, symbol, symbols = []}) => {
+        tokens: async (_: any, {limit = 1000, offset = 0, symbol, symbols = [], resultLimit = 100, resultOffset = 0}) => {
             const queryConfig = {
                 symbol,
             };
@@ -70,7 +70,12 @@ export default {
                 );
             });
 
-            return results;
+            return {
+                results: results.slice(resultOffset, resultOffset + resultLimit),
+                pagination: {
+                    total: results.length
+                }
+            };
         },
         contractInfo: async(_: any) => {
             const results: any[] = await ssc.getContractInfo('tokens');
