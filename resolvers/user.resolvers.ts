@@ -10,10 +10,11 @@ export default {
             const prices: any = await getPrices();
             let results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
 
-            const symbols = results.reduce((acc: string[], value: any) => {
-                acc.push(value.symbol);
-                return acc;
-            }, []);
+            const symbols = [];
+
+            for (const symbol of results) {
+                symbols.push(symbol.symbol);
+            }
 
             const tokens = await ssc.find('tokens', 'tokens', { symbol: { $in: symbols } }, 1000, 0);
             const metrics = await ssc.find('market', 'metrics', { symbol: { $in: symbols } }, 1000, 0, '', false);

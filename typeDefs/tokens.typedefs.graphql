@@ -59,8 +59,23 @@ type Contract {
   _id: String!
 }
 
+type TokenBalance {
+    account: String!
+    symbol: String!
+    balance: Float!
+    delegationsIn: Float
+    delegationsOut: Float
+    pendingUndelegations: Float
+    stake: Float
+    pendingUnstake: Float
+    metric: Metric
+    usdValueFormatted: String
+    usdValue: Float
+}
+
 type Query {
   tokens(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [Token!]!
+  symbolBalances(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [TokenBalance!]!
   contractInfo: Contract!
   tokenParams: [TokenParams!]!
   steempBalance: SteempBalance

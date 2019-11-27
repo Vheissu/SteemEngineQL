@@ -1,4 +1,5 @@
 import { ssc } from '../client';
+import { usdFormat, getPrices, getScotConfigForAccount } from '../helpers';
 
 export default {
     Query: {
@@ -80,6 +81,91 @@ export default {
                     (b.metric.volume > 0 ? b.metric.volume : b.metric.marketCap / 1000000000) - (a.metric.volume > 0 ? a.metric.volume : a.metric.marketCap / 1000000000)
                 );
             });
+
+            return results;
+        },
+        symbolBalances: async (_: any, { symbol, symbols = [], limit = 1000, offset = 0 }) => {
+            const queryConfig = {
+                symbol,
+            };
+
+            if (symbols.length) {
+                queryConfig.symbol = { $in: symbols };
+            }
+            
+            const prices: any = await getPrices();
+            let results: any[] = await ssc.find('tokens', 'balances', queryConfig, limit, offset, '', false);
+
+            if (!symbols.length) {
+                const tokenSymbols = [];
+
+                for (const token of results) {
+                    tokenSymbols.push(token.symbol);
+                }
+
+                queryConfig.symbol = { $in: tokenSymbols };
+            }
+
+            const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
+
+            for (const token of results) {
+                if (token?.balance) {
+                    token.balance = parseFloat(token.balance);
+                }
+
+                if (token?.delegationsIn) {
+                    token.delegationsIn = parseFloat(token.delegationsIn);
+                }
+
+                if (token?.delegationsOut) {
+                    token.delegationsOut = parseFloat(token.delegationsOut);
+                }
+
+                if (token?.stake) {
+                    token.stake = parseFloat(token.stake);
+                }
+
+                if (token?.pendingUnstake) {
+                    token.pendingUnstake = parseFloat(token.pendingUnstake);
+                }
+
+                const findMetric = metrics.find(m => m.symbol === token.symbol);
+
+                token.metric = findMetric;
+                
+                if (token.metric) {
+                    token.metric.highestBid = parseFloat(token.metric.highestBid);
+                    token.metric.lastPrice = parseFloat(token.metric.lastPrice);
+                    token.metric.lowestAsk = parseFloat(token.metric.lowestAsk);
+                    token.metric.marketCap = token.metric.lastPrice * parseFloat(token.circulatingSupply);
+                    token.metric.lastDayPrice = parseFloat(token.metric.lastDayPrice);
+
+                    if (token.metric.priceChangePercent !== null) {
+                        token.metric.priceChangePercent = token.metric.priceChangePercent.toString().replace('%', '');
+                    }
+                }
+
+                if (token?.metric?.volumeExpiration >= 0) {
+                    if (Date.now() / 1000 < token.metric.volumeExpiration) {
+                        token.metric.volume = parseFloat(token.metric.volume);
+                    }
+                }
+
+                if (token?.metric?.lastDayPriceExpiration >= 0) {
+                    if (Date.now() / 1000 < token.metric.lastDayPriceExpiration) {
+                        token.metric.priceChangePercent = parseFloat(token.metric.priceChangePercent);
+                        token.metric.priceChangeSteem = parseFloat(token.metric.priceChangeSteem);
+                    }
+                }
+
+                if (token?.metric?.lastPrice) {
+                    token.usdValueFormatted = usdFormat(parseFloat(token.balance) * token.metric.lastPrice, 3, prices.steem_price);
+                    token.usdValue = usdFormat(parseFloat(token.balance) * token.metric.lastPrice, 3, prices.steem_price, true);
+                } else {
+                    token.usdValueFormatted = usdFormat(parseFloat(token.balance) * 1, 3, prices.steem_price);
+                    token.usdValue = usdFormat(parseFloat(token.balance) * 1, 3, prices.steem_price, true);
+                }
+            }
 
             return results;
         },
