@@ -35,6 +35,8 @@ type Balance {
     scotConfig: ScotConfig
     token: Token
     metric: Metric
+    usdValueFormatted: String
+    usdValue: Float
 }
 
 type AccountHistory {

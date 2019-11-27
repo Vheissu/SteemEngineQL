@@ -1,5 +1,6 @@
 import { ssc } from '../client';
 import axios from 'axios';
+import { usdFormat, getPrices } from '../helpers';
 
 const HISTORY_API_ENDPOINT = 'https://api.steem-engine.com/accounts/history';
 const SCOT_API = 'https://scot-api.steem-engine.com/';
@@ -13,6 +14,7 @@ async function getScotConfigForAccount(account: string) {
 export default {
     Query: {
         balances: async (_: any, { account, limit = 1000, offset = 0 }) => {
+            const prices: any = await getPrices();
             let results: any[] = await ssc.find('tokens', 'balances', { account }, limit, offset, '', false);
 
             const symbols = results.reduce((acc: string[], value: any) => {
@@ -77,6 +79,14 @@ export default {
                         token.metric.priceChangePercent = parseFloat(token.metric.priceChangePercent);
                         token.metric.priceChangeSteem = parseFloat(token.metric.priceChangeSteem);
                     }
+                }
+
+                if (token?.metric?.lastPrice) {
+                    token.usdValueFormatted = usdFormat(parseFloat(token.balance) * token.metric.lastPrice, 3, prices.steem_price);
+                    token.usdValue = usdFormat(parseFloat(token.balance) * token.metric.lastPrice, 3, prices.steem_price, true);
+                } else {
+                    token.usdValueFormatted = usdFormat(parseFloat(token.balance) * 1, 3, prices.steem_price);
+                    token.usdValue = usdFormat(parseFloat(token.balance) * 1, 3, prices.steem_price, true);
                 }
             }
 

@@ -1,18 +1,34 @@
 import axios from 'axios';
 
-export function usdFormat(val, decimal_limit, steemPrice) {
+export function usdFormat(val, decimal_limit, steemPrice, withoutFormatting = false) {
     const usd = val * steemPrice;
 
     if (decimal_limit != null && !isNaN(parseInt(decimal_limit))) {
-        return '$' + addCommas(usd.toFixed(decimal_limit));
+        if (withoutFormatting) {
+            return usd.toFixed(decimal_limit);
+        } else {
+            return '$' + addCommas(usd.toFixed(decimal_limit));
+        }
     }
 
     if (usd >= 1) {
-        return '$' + addCommas(usd.toFixed(2));
+        if (withoutFormatting) {
+            return usd.toFixed(2);
+        } else {
+            return '$' + addCommas(usd.toFixed(2));
+        }
     } else if (usd >= 0.1) {
-        return '$' + usd.toFixed(3);
+        if (withoutFormatting) {
+            return usd.toFixed(3);
+        } else {
+            return '$' + usd.toFixed(3);
+        }
     } else {
-        return '$' + usd.toFixed(5);
+        if (withoutFormatting) {
+            return usd.toFixed(5);
+        } else {
+            return '$' + usd.toFixed(5);
+        }
     }
 }
 
