@@ -1,4 +1,5 @@
 import * as steem from 'steem';
+import { getPrices } from '../helpers';
 
 export default {
     Mutation: {
@@ -24,6 +25,13 @@ export default {
             let result: any = await steem.api.getAccountsAsync(names);
 
             return result;
+        },
+        steemPrice: async (_: any) => {
+            const prices: any = await getPrices();
+            return {
+                steem: parseFloat(prices.steem_price),
+                sbd: parseFloat(prices.sbd_price)
+            }
         }
     }
 };

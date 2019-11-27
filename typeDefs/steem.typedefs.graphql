@@ -110,6 +110,11 @@ type MutationResponse {
     signatures: [String!]!
 }
 
+type SteemPrice {
+    steem: Float
+    sbd: Float
+}
+
 type Mutation {
     customJSON(input: CustomJSONInput): MutationResponse
 }
@@ -117,4 +122,5 @@ type Mutation {
 type Query {
     account(name: String!): Account
     accounts(names: [String!]!): [Account]
+    steemPrice: SteemPrice
 }
