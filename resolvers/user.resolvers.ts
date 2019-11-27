@@ -1,15 +1,8 @@
 import { ssc } from '../client';
 import axios from 'axios';
-import { usdFormat, getPrices } from '../helpers';
+import { usdFormat, getPrices, getScotConfigForAccount } from '../helpers';
 
 const HISTORY_API_ENDPOINT = 'https://api.steem-engine.com/accounts/history';
-const SCOT_API = 'https://scot-api.steem-engine.com/';
-
-async function getScotConfigForAccount(account: string) {
-    const result = await axios.get(`${SCOT_API}@${account}`);
-
-    return result.data;
-}
 
 export default {
     Query: {

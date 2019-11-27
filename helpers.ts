@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const SCOT_API = 'https://scot-api.steem-engine.com/';
+
 export function usdFormat(val, decimal_limit, steemPrice, withoutFormatting = false) {
     const usd = val * steemPrice;
 
@@ -65,4 +67,10 @@ export async function getPrices() {
     } catch {
         return null;
     }
+}
+
+export async function getScotConfigForAccount(account: string) {
+    const result = await axios.get(`${SCOT_API}@${account}`);
+
+    return result.data;
 }
