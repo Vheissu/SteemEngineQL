@@ -24,9 +24,6 @@ const options = { port: process.env.PORT || 4999 };
 const server = new ApolloServer({
   typeDefs: typeDefs as any,
   resolvers: [ { BigInt: new BigInt('bigInt') }, { Tuple }, ...resolvers ] as any,
-  cacheControl: {
-    defaultMaxAge: 5,
-  },
   context: ({ req }) => ({
     ...req
   }),

@@ -27,7 +27,7 @@ type TradesHistory {
     timestamp: Int!
 }
 
-type Metric @cacheControl(maxAge: 10) {
+type Metric {
     symbol: String
     volume: Float
     volumeExpiration: Int
