@@ -87,6 +87,7 @@ export default {
         symbolBalances: async (_: any, { symbol, symbols = [], limit = 1000, offset = 0 }) => {
             const queryConfig = {
                 symbol,
+                balance: { $gte: 1 }
             };
 
             if (symbols.length) {
@@ -104,6 +105,8 @@ export default {
                 }
 
                 queryConfig.symbol = { $in: tokenSymbols };
+
+                delete queryConfig.balance;
             }
 
             const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
