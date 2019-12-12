@@ -14,7 +14,7 @@ export default {
 
             const results = [];
 
-            const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, 1000, 0);
+            const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
 
             if (!symbols.length) {
                 const tokenSymbols = [];
@@ -26,7 +26,7 @@ export default {
                 queryConfig.symbol = { $in: tokenSymbols };
             }
 
-            const metrics = await ssc.find('market', 'metrics', queryConfig, 1000, 0, '', false);
+            const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
 
             for (const token of tokens) {
                 if (token?.metadata) {
@@ -84,7 +84,7 @@ export default {
                 );
             });
 
-            return results.slice(offset, limit);
+            return results;
         },
         symbolBalances: async (_: any, { symbol, symbols = [], limit = 1000, offset = 0 }) => {
             const queryConfig = {
