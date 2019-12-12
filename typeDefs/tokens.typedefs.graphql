@@ -74,7 +74,7 @@ type TokenBalance {
 }
 
 type Query {
-  tokens(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [Token!]!
+  tokens(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [Token!]! @cacheControl(maxAge: 86400)
   symbolBalances(symbol: String, limit: Int, offset: Int, symbol: String, symbols: [String]): [TokenBalance!]!
   contractInfo: Contract!
   tokenParams: [TokenParams!]!
