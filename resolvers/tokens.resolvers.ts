@@ -14,7 +14,7 @@ export default {
 
             const results = [];
 
-            const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, limit, offset);
+            const tokens: any[] = await ssc.find('tokens', 'tokens', queryConfig, 1000, 0);
 
             if (!symbols.length) {
                 const tokenSymbols = [];
@@ -26,7 +26,7 @@ export default {
                 queryConfig.symbol = { $in: tokenSymbols };
             }
 
-            const metrics = await ssc.find('market', 'metrics', queryConfig, limit, offset, '', false);
+            const metrics = await ssc.find('market', 'metrics', queryConfig, 1000, 0, '', false);
 
             for (const token of tokens) {
                 if (token?.metadata) {
@@ -36,11 +36,13 @@ export default {
                 const metric = metrics.find(m => token.symbol == m.symbol);
 
                 if (metric) {
+                    metric.volume = parseFloat(metric.volume);
                     metric.highestBid = parseFloat(metric.highestBid);
                     metric.lastPrice = parseFloat(metric.lastPrice);
                     metric.lowestAsk = parseFloat(metric.lowestAsk);
                     metric.marketCap = metric.lastPrice * parseFloat(token.circulatingSupply);
                     metric.lastDayPrice = parseFloat(metric.lastDayPrice);
+                    metric.volumeExpiration = parseInt(metric.volumeExpiration);
 
                     if (metric.priceChangePercent !== null) {
                         metric.priceChangePercent = metric.priceChangePercent.replace('%', '');
@@ -82,7 +84,7 @@ export default {
                 );
             });
 
-            return results;
+            return results.slice(offset, limit);
         },
         symbolBalances: async (_: any, { symbol, symbols = [], limit = 1000, offset = 0 }) => {
             const queryConfig = {
