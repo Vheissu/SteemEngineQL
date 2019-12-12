@@ -84,7 +84,7 @@ export default {
                 );
             });
 
-            return results.slice(offset, limit);
+            return results.slice(limit, offset);
         },
         symbolBalances: async (_: any, { symbol, symbols = [], limit = 1000, offset = 0 }) => {
             const queryConfig = {
