@@ -25,7 +25,8 @@ type Nft {
     undelegationCooldown: Int!
     authorizedIssuingAccounts: [String]
     authorizedIssuingContracts: [String]
-    properties: [NftProperty]
+    properties: [NftProperty],
+    groupBy: [String]
 }
 
 type NftDelegatee {
@@ -53,6 +54,48 @@ type UserNftInstance {
     symbol: String
 }
 
+type NftSell {
+    _id: Int!
+    account: String!
+    ownedBy: String!
+    nftId: String!
+    grouping: Tuple!
+    timestamp: Int!
+    price: String!
+    priceDec: Tuple!
+    priceSymbol: String!
+    fee: Int!
+}
+
+type NftCounterparty {
+    account: String!
+    ownedBy: String!
+    nftIds: [String]
+    paymentTotal: String!
+}
+
+type NftTrade {
+    _id: Int!
+    type: String!
+    account: String!
+    ownedBy: String!
+    counterparties: [NftCounterparty]
+    priceSymbol: String!
+    price: String!
+    marketAccount: String!
+    fee: String!
+    timestamp: Int!
+    volume: Int!
+}
+
+type NftInterest {
+    _id: Int!
+    side: String!
+    priceSymbol: String!
+    grouping: Tuple!
+    count: Int!
+}
+
 type NftParam {
     nftCreationFee: Int!
     nftIssuanceFee: Tuple!
@@ -66,4 +109,7 @@ type Query {
     userNfts(account: String!, limit: Int, offset: Int): [UserNftInstance]
     nftParams: NftParam
     instances(symbol: String!, account: String): [NftInstance]
+    nftSellBook(symbol: String!, limit: Int, offset: Int): [NftSell]
+    nftTradesHistory(symbol: String!, limit: Int, offset: Int): [NftTrade]
+    nftOpenInterest(symbol: String!, limit: Int, offset: Int): [NftInterest]
 }

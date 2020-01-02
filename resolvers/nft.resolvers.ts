@@ -47,6 +47,8 @@ export default {
                 result.properties = finalProperties;
             }
 
+            console.log(result);
+
             return result;
         },
 
@@ -68,6 +70,30 @@ export default {
             }
 
             return userOwnedNfts;
+        },
+
+        nftSellBook: async (_: any, { symbol, limit = 50, offset = 0 }) => {
+            const orders: any[] = await ssc.find('nft', `${symbol.toUpperCase()}sellBook`, { }, limit, offset, [], false);
+
+            console.log(orders);
+
+            return orders;
+        },
+
+        nftTradesHistory: async (_: any, { symbol, limit = 50, offset = 0 }) => {
+            const history: any[] = await ssc.find('nft', `${symbol.toUpperCase()}tradesHistory`, { }, limit, offset, [], false);
+
+            console.log(history);
+
+            return history;
+        },
+
+        nftOpenInterest: async (_: any, { symbol, limit = 50, offset = 0 }) => {
+            const interest: any[] = await ssc.find('nft', `${symbol.toUpperCase()}openInterest`, { }, limit, offset, [], false);
+
+            console.log(interest);
+
+            return interest;
         },
 
         instances: async (_: any, { symbol, account, limit = 200, offset = 0 }: any) => {
