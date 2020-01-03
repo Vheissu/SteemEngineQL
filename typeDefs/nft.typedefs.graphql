@@ -60,7 +60,7 @@ type NftSell {
     ownedBy: String!
     nftId: String!
     grouping: Tuple!
-    timestamp: Int!
+    timestamp: BigInt!
     price: String!
     priceDec: Tuple!
     priceSymbol: String!
@@ -84,8 +84,8 @@ type NftTrade {
     price: String!
     marketAccount: String!
     fee: String!
-    timestamp: Int!
-    volume: Int!
+    timestamp: BigInt!
+    volume: BigInt!
 }
 
 type NftInterest {
