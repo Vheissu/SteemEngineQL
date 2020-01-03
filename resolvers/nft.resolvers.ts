@@ -83,7 +83,7 @@ export default {
         },
 
         nftSellBook: async (_: any, { symbol, limit = 50, offset = 0 }) => {
-            const orders: any[] = await ssc.find('nft', `${symbol.toUpperCase()}sellBook`, { }, limit, offset, [], false);
+            const orders: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}sellBook`, { }, limit, offset, [], false);
 
             console.log(orders);
 
@@ -91,7 +91,7 @@ export default {
         },
 
         nftTradesHistory: async (_: any, { symbol, limit = 50, offset = 0 }) => {
-            const history: any[] = await ssc.find('nft', `${symbol.toUpperCase()}tradesHistory`, { }, limit, offset, [], false);
+            const history: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}tradesHistory`, { }, limit, offset, [], false);
 
             console.log(history);
 
@@ -99,7 +99,7 @@ export default {
         },
 
         nftOpenInterest: async (_: any, { symbol, limit = 50, offset = 0 }) => {
-            const interest: any[] = await ssc.find('nft', `${symbol.toUpperCase()}openInterest`, { }, limit, offset, [], false);
+            const interest: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}openInterest`, { }, limit, offset, [], false);
 
             console.log(interest);
 
