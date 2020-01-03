@@ -26,7 +26,7 @@ export default {
                     nft.properties = finalProperties;
                 }
 
-                if (nft?.groupBy) {
+                if (!nft?.groupBy) {
                     nft.groupBy = [];
                 }
             }
@@ -51,7 +51,7 @@ export default {
                 result.properties = finalProperties;
             }
 
-            if (result?.groupBy) {
+            if (!result?.groupBy) {
                 result.groupBy = [];
             }
 
@@ -74,7 +74,7 @@ export default {
                     userOwnedNfts = [ ...userOwnedNfts, ...instances ];
                 }
 
-                if (nft?.groupBy) {
+                if (!nft?.groupBy) {
                     nft.groupBy = [];
                 }
             }
