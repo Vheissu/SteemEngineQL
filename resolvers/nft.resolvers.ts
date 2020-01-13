@@ -37,22 +37,24 @@ export default {
         nft: async (_: any, { symbol }: any) => {
             const result = await ssc.findOne('nft', 'nfts', { symbol });
 
-            if (result?.metadata) {
-                result.metadata = JSON.parse(result.metadata);
-            }
-
-            if (result?.properties) {
-                let finalProperties = [];
-
-                for (const [key, value] of Object.entries(result.properties) as any) {
-                    finalProperties.push({ name: key, ...value });
+            if (result) {
+                if (result?.metadata) {
+                    result.metadata = JSON.parse(result.metadata);
                 }
-
-                result.properties = finalProperties;
-            }
-
-            if (!result?.groupBy) {
-                result.groupBy = [];
+    
+                if (result?.properties) {
+                    let finalProperties = [];
+    
+                    for (const [key, value] of Object.entries(result.properties) as any) {
+                        finalProperties.push({ name: key, ...value });
+                    }
+    
+                    result.properties = finalProperties;
+                }
+    
+                if (!result?.groupBy) {
+                    result.groupBy = [];
+                }
             }
 
             return result;
