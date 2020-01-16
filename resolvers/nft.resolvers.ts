@@ -48,6 +48,13 @@ export default {
                 if (result?.metadata) {
                     result.metadata = JSON.parse(result.metadata);
                 }
+
+                result.orders = [];
+                const orders: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}sellBook`, { }, 100, 0, [], false);
+
+                if (orders && orders.length) {
+                    result.orders = orders;
+                }
     
                 if (result?.properties) {
                     let finalProperties = [];
