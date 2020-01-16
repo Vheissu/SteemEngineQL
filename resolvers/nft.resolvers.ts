@@ -16,6 +16,14 @@ export default {
                     nft.metadata = JSON.parse(nft.metadata);
                 }
 
+                nft.order = null;
+
+                const order: any[] = await ssc.find('nftmarket', `${nft.symbol.toUpperCase()}sellBook`, { _id: { $in: [nft._id] } }, 1, 0, [], false);
+
+                if (order && order.length) {
+                    nft.order = order[0];
+                }
+
                 if (nft?.properties) {
                     let finalProperties = [];
 
