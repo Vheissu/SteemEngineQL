@@ -13,12 +13,12 @@ type NftProperty {
 }
 
 type Nft {
-    _id: Int!
+    _id: Int! @cacheControl(maxAge: 604800)
     issuer: String!
-    symbol: String!
+    symbol: String! @cacheControl(maxAge: 604800)
     name: String!
     metadata: NftMetadata
-    maxSupply: BigInt!
+    maxSupply: BigInt! @cacheControl(maxAge: 604800)
     supply: BigInt!
     circulatingSupply: BigInt
     delegationEnabled: Boolean!
@@ -37,8 +37,8 @@ type NftDelegatee {
 }
 
 type NftInstance {
-    _id: Int!
-    account: String
+    _id: Int! @cacheControl(maxAge: 604800)
+    account: String @cacheControl(maxAge: 500)
     ownedBy: String
     lockedTokens: Tuple
     properties: Tuple
@@ -46,26 +46,26 @@ type NftInstance {
 }
 
 type UserNftInstance {
-    _id: Int!
+    _id: Int! @cacheControl(maxAge: 604800)
     account: String
     ownedBy: String
     lockedTokens: Tuple
     properties: Tuple
     delegatedTo: NftDelegatee
-    symbol: String
+    symbol: String @cacheControl(maxAge: 604800)
 }
 
 type NftSell {
-    _id: Int!
+    _id: Int! @cacheControl(maxAge: 604800)
     account: String!
     ownedBy: String!
     nftId: String!
     grouping: Tuple!
-    timestamp: BigInt!
+    timestamp: BigInt! @cacheControl(maxAge: 500)
     price: String!
     priceDec: Tuple!
     priceSymbol: String!
-    fee: Int!
+    fee: Int! @cacheControl(maxAge: 500)
 }
 
 type NftCounterparty {
@@ -76,12 +76,12 @@ type NftCounterparty {
 }
 
 type NftTrade {
-    _id: Int!
+    _id: Int! @cacheControl(maxAge: 604800)
     type: String!
     account: String!
     ownedBy: String!
     counterparties: [NftCounterparty]
-    priceSymbol: String!
+    priceSymbol: String! @cacheControl(maxAge: 604800)
     price: String!
     marketAccount: String!
     fee: String!
@@ -90,9 +90,9 @@ type NftTrade {
 }
 
 type NftInterest {
-    _id: Int!
+    _id: Int! @cacheControl(maxAge: 604800)
     side: String!
-    priceSymbol: String!
+    priceSymbol: String! @cacheControl(maxAge: 604800)
     grouping: Tuple!
     count: Int!
 }
