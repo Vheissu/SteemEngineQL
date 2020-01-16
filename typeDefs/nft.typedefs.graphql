@@ -110,7 +110,8 @@ type Query {
     userNfts(account: String!, limit: Int, offset: Int): [UserNftInstance]
     nftParams: NftParam
     instances(symbol: String!, account: String): [NftInstance]
-    nftSellBook(symbol: String!, limit: Int, offset: Int): [NftSell]
+    nftSellBook(symbol: String!, account: String, limit: Int, offset: Int): [NftSell]
+    nftUserSellBooks(account: String!, limit: Int, offset: Int): [NftSell]
     nftTradesHistory(symbol: String!, limit: Int, offset: Int): [NftTrade]
     nftOpenInterest(symbol: String!, limit: Int, offset: Int): [NftInterest]
 }

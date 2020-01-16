@@ -91,8 +91,35 @@ export default {
             return userOwnedNfts;
         },
 
-        nftSellBook: async (_: any, { symbol, limit = 50, offset = 0 }) => {
+        nftSellBook: async (_: any, { symbol, account, limit = 50, offset = 0 }) => {
+            const options: any = {};
+
+            if (account) {
+                options.account = { $in: [account] };
+            }
+
             const orders: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}sellBook`, { }, limit, offset, [], false);
+
+            return orders;
+        },
+
+        nftUserSellBooks: async (_: any, { account, limit = 50, offset = 0 }) => {
+            const options: any = {
+                account: { $in: [account] }
+            };
+
+            const orders = [];
+
+            const results: any[] = await ssc.find('nft', 'nfts', { }, 999, 0, [], false);
+            for (const nft of results) {
+                const symbol = nft.symbol;
+
+                const ordersResponse: any[] = await ssc.find('nftmarket', `${symbol.toUpperCase()}sellBook`, options, limit, offset, [], false);
+
+                if (ordersResponse && ordersResponse.length) {
+                    orders.push(...ordersResponse);
+                }
+            }
 
             return orders;
         },
