@@ -12,19 +12,6 @@ type NftProperty {
     type: String!
 }
 
-type NftOrder {
-    _id: Int!
-    account: String!
-    ownedBy: String!
-    nftId: String!
-    grouping: Tuple,
-    timestamp: Int!
-    price: String!
-    priceDec: Tuple
-    priceSymbol: String!
-    fee: Int!
-}
-
 type Nft {
     _id: Int!
     issuer: String!
@@ -40,7 +27,7 @@ type Nft {
     authorizedIssuingContracts: [String]
     properties: [NftProperty],
     groupBy: [String]
-    order: NftOrder
+    orders: [NftSell]
 }
 
 type NftDelegatee {
