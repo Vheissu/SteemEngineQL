@@ -31,9 +31,9 @@ type Nft {
     symbol: String!
     name: String!
     metadata: NftMetadata
-    maxSupply: Int!
-    supply: Int!
-    circulatingSupply: Int
+    maxSupply: BigInt!
+    supply: BigInt!
+    circulatingSupply: BigInt
     delegationEnabled: Boolean!
     undelegationCooldown: Int!
     authorizedIssuingAccounts: [String]
