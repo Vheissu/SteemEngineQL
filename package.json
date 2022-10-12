@@ -13,7 +13,7 @@
     "start": "nodemon"
   },
   "dependencies": {
-    "apollo-server": "^2.9.15",
+    "apollo-server": "^2.25.4",
     "apollo-server-cache-redis": "^1.1.5",
     "axios": "^0.19.0",
     "dataloader": "^1.4.0",
